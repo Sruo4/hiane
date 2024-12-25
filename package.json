@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,md}\""
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "prepare": "husky install"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -27,9 +28,20 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.13.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.1",
     "unocss": "^0.65.2",
     "vite": "^6.0.3"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,less,scss,md}": [
+      "prettier --write"
+    ]
   }
 }
