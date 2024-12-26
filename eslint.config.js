@@ -4,12 +4,11 @@ import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
-import eslintConfigPrettier from "eslint-config-prettier";
+import eslintConfigPrettier from 'eslint-config-prettier'
 
 export default [
   {
     ignores: ['dist'],
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],
     settings: { react: { version: '18.3' } },
     languageOptions: {
@@ -19,6 +18,7 @@ export default [
         project: ['./tsconfig.node.json', './tsconfig.app.json'],
         tsconfigRootDir: import.meta.dirname,
       },
+      parser: tseslint.parser,
     },
     plugins: {
       react,
@@ -26,16 +26,13 @@ export default [
       'react-refresh': reactRefresh,
     },
     rules: {
+      ...js.configs.recommended.rules,
+      ...tseslint.configs.recommended[1].rules,
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-      ...eslintConfigPrettier.rules
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+      ...eslintConfigPrettier.rules,
     },
   },
-  eslintConfigPrettier,
 ]
-
