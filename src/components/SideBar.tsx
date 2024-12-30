@@ -15,7 +15,7 @@ const barItems: BarItem[] = [
 
 const SideBar = () => {
   return (
-    <div className="fixed left-0 top-0 h-full w-48 bg-gray-100 p-4 shadow-lg">
+    <div className="fixed left-0 top-0 h-full w-48 bg-gray-100 p-4">
       <ul className="space-y-4 list-none p-0 m-0">
         {barItems.map((item) => (
           <li key={item.id} className="w-full hover:bg-gray-200 rounded-lg transition-colors">
